@@ -1,9 +1,7 @@
 "use client"
 
 import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
-import { Logo } from "./Logo";
-import { Navigation } from "./Navigation";
-import { Header } from "./Header";
+import { Logo, Navigation, Header } from "@/components";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

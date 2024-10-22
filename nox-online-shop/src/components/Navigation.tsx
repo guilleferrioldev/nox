@@ -3,8 +3,8 @@ import {
   MdOutlineSpaceDashboard,
   MdOutlineNotifications,
 } from "react-icons/md";
-import { NavItem } from "./NavItem";
-import { Item } from "@/types";
+import { NavItem } from "@/components";
+import { IItem } from "@/types";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { FiFileText } from "react-icons/fi";
 import { AiOutlineDatabase, AiOutlinePicture } from "react-icons/ai";
@@ -12,7 +12,7 @@ import { LuBookOpen } from "react-icons/lu";
 import { IoGameControllerOutline } from "react-icons/io5";
 import { HiOutlineGift } from "react-icons/hi2";
 
-const items: Item[] = [
+const items: IItem[] = [
   {
     type: "link",
     label: "Dashboard",
