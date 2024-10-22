@@ -27,7 +27,6 @@ export enum OrderStatus {
 
 export const colorScheme = {
   "ALL STATUS": 'gray',
-  PENDING: '#1A202C',
   TRANSPORTING: '#BEE3F8',
   PACKAGING: '#FEEBCB',
   DELIVERED: '#C6F6D5',

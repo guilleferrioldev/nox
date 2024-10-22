@@ -1,6 +1,6 @@
 "use client"
 
-import { Flex, Button, Stack, ButtonGroup } from "@chakra-ui/react";
+import { Flex, Button, ButtonGroup } from "@chakra-ui/react";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 
 interface PaginationProps {
@@ -11,8 +11,7 @@ interface PaginationProps {
 
 export const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
   return (
-    <Flex justifyContent="center" mt={4} w="full">
-      <Stack direction="row" spacing={4} w="full" justifyContent="space-between" padding={4}>
+    <Flex w="full" maxHeight="5%" justifyContent="space-between">
         <Button
           bg="#FFFFFF"
           color="#FF7500"
@@ -46,7 +45,6 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
         >
           Next
         </Button>
-      </Stack>
     </Flex>
   );
 };

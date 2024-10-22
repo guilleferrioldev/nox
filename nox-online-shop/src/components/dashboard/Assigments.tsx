@@ -15,10 +15,10 @@ export const Assignments = ({assigments}: Props) => {
             gap={4}
         >
             <Stack spacing={2}>
-                <Heading as="h2" size="md" color="gray.700">
+                <Heading as="h2" size="md" color="#05004E">
                     Assignments
                 </Heading>
-                <Heading as="h2" size="sm" color="gray.500" fontWeight="medium">
+                <Heading as="h2" size="sm" color="#737791" fontWeight="medium">
                     Assignments to messengers
                 </Heading>
             </Stack>

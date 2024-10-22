@@ -9,7 +9,7 @@ export const Logo = () => (
     gap={4}
   >
     <Box display="flex" alignItems="center" gap={2}>
-      <Image src="/logo.png" alt="Logo" width={300} height={300} />
+      <Image src="/logo.png" alt="Logo" width={150} height={150} />
     </Box>
   </Flex>
 );

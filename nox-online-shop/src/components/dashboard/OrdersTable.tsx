@@ -1,5 +1,5 @@
 import { colorScheme, colorText, IOrder } from "@/types"
-import { Avatar, Badge, Button, Flex, Select, Table, TableContainer, Tbody, Td, Th, Tr } from "@chakra-ui/react";
+import { Avatar, Badge, Button, Flex, Heading, Input, Select, Table, TableContainer, Tbody, Td, Th, Tr } from "@chakra-ui/react";
 import { Pagination } from "..";
 
 interface Props {
@@ -10,28 +10,42 @@ export const OrdersTable = ({orders}: Props) => {
     return (
         <Flex
             w="full"
-            h="full"
+            h="90%"
             flexDirection="column" 
             p={6}
             gap={4}
         >
-
         <Flex
-            h="20%"
+            w="full"
+            maxHeight="20px"
+            mb={3}
             flexDirection="column"
             gap={4}
         >
-            <Select placeholder='Select option'>
-            {Array.from({ length: 10 }, (_, i) => i + 1).map((number) => (
-                <option key={number} value={number}>
-                    {number}
-                </option>
-            ))}
-            </Select>
-            
+            <Flex w="full" alignItems="center" justifyContent="space-between">
+                <Flex w="40%" h="full" alignItems="center" gap="20px">
+                    <Select gap="20px" w="20%" color="#737791">
+                        {Array.from({ length: 5 }, (_, i) => i + 1).map((number) => (
+                            <option key={number} value={number}>
+                                {number}
+                            </option>
+                        ))}
+                    </Select>
+                    <Heading w="60%" as="h2" size="sm" color="#737791" fontWeight="medium">
+                        Entries per page
+                    </Heading>
+                </Flex>
+
+                <Flex w="40%" h="full" alignItems="center" gap="20px">
+                    <Heading as="h2" size="sm" color="#737791" fontWeight="medium">
+                        Search
+                    </Heading>
+                    <Input/>
+                </Flex>
+            </Flex>
         </Flex >
 
-        <TableContainer h="80%">
+        <TableContainer h="80%" mb={1}>
         <Table variant="simple" >
           <thead>
             <tr>
@@ -74,7 +88,7 @@ export const OrdersTable = ({orders}: Props) => {
                     <Badge
                         key={order.status}
                         variant="solid"
-                        bg={colorScheme[order.status]}
+                        bg={order.status !== "PENDING" ? colorScheme[order.status]: ""}
                         color={colorText[order.status]}
                         >
                         {order.status}

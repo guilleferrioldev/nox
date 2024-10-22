@@ -2,7 +2,7 @@
 
 import { Assignments, OrdersTable } from "@/components";
 import {  colorSchemePrincipal, IAssignment, IOrder, OrderStatus } from "@/types";
-import { Badge, Box, Button, ButtonGroup, Flex, Grid, GridItem, Icon, Stack } from "@chakra-ui/react";
+import { Badge, Box, Button, ButtonGroup, Flex, Grid, GridItem, Heading, Icon, Input, Stack } from "@chakra-ui/react";
 import { BsGeo } from "react-icons/bs";
 import { MdMenu } from "react-icons/md";
 
@@ -35,7 +35,7 @@ const orders: IOrder[] = [
    products: ['product-1', 'product-2'],
    email: 'john.doe@example.com',
    phone: '123-456-7890',
-   status: OrderStatus.TRANSPORTING,
+   status: OrderStatus.PENDING,
   },
   {
    id: 'order-2',
@@ -44,7 +44,7 @@ const orders: IOrder[] = [
    products: ['product-3', 'product-4'],
    email: 'jane.doe@example.com',
    phone: '987-654-3210',
-   status: OrderStatus.CANCELED,
+   status: OrderStatus.TRANSPORTING,
   },
   {
    id: 'order-3',
@@ -53,8 +53,26 @@ const orders: IOrder[] = [
    products: ['product-5', 'product-6'],
    email: 'peter.pan@example.com',
    phone: '555-123-4567',
-   status: OrderStatus.DELIVERED,
+   status: OrderStatus.PACKAGING,
   },
+  {
+    id: 'order-4',
+    name: 'Jane Doe',
+    src: 'https://bit.ly/kent-c-dodds',
+    products: ['product-3', 'product-4'],
+    email: 'jane.doe@example.com',
+    phone: '987-654-3210',
+    status: OrderStatus.DELIVERED,
+   },
+   {
+    id: 'order-5',
+    name: 'Jane Doe',
+    src: 'https://bit.ly/kent-c-dodds',
+    products: ['product-3', 'product-4'],
+    email: 'jane.doe@example.com',
+    phone: '987-654-3210',
+    status: OrderStatus.CANCELED,
+   },
  ];
 
 export default function Home() {
@@ -67,9 +85,10 @@ export default function Home() {
       >
         <Flex
           w="full" 
-          h="10%"
+          h="5%"
           bg="#F9FAFB"
           padding={4}
+          my="4"
           gap={3}
           alignItems="center"
           justifyContent="end" 
@@ -125,11 +144,26 @@ export default function Home() {
         </Flex>
         <Grid
           w="full"
-          h="90%"
-          templateColumns={{ base: '1fr', md: '3fr 1fr' }} // Define columns for mobile and desktop
+          maxHeight="80%"
+          templateColumns={{ base: '1fr', md: '3fr 1fr' }} 
           gap={10}
         >
           <GridItem colSpan={1} bg="white" borderRadius="20px">
+            <Flex w="full" h="10%" p={6} pt={10} alignItems="center" justifyContent="space-between">
+              <Stack spacing={2} w="40%">
+                <Heading as="h2" size="md" color="#05004E">
+                    Orders
+                </Heading>
+                <Heading as="h2" size="sm" color="#737791" fontWeight="medium">
+                    Order summary
+                </Heading>
+              </Stack>
+              <Flex align="center" w="40%">
+                  <Input type="date" size='sm' color="#A0AEC0"/> 
+                  <Input type="date" size='sm' color="#A0AEC0"/> 
+              </Flex>
+            </Flex>
+            
             <OrdersTable orders={orders}/>
           </GridItem>
 
