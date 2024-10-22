@@ -1,7 +1,7 @@
 "use client"
 
 import { Assignments, OrdersTable } from "@/components";
-import { colorScheme, IAssignment, IOrder, OrderStatus } from "@/types";
+import {  colorSchemePrincipal, IAssignment, IOrder, OrderStatus } from "@/types";
 import { Badge, Box, Button, ButtonGroup, Flex, Grid, GridItem, Icon, Stack } from "@chakra-ui/react";
 import { BsGeo } from "react-icons/bs";
 import { MdMenu } from "react-icons/md";
@@ -35,7 +35,7 @@ const orders: IOrder[] = [
    products: ['product-1', 'product-2'],
    email: 'john.doe@example.com',
    phone: '123-456-7890',
-   status: OrderStatus.PENDING,
+   status: OrderStatus.TRANSPORTING,
   },
   {
    id: 'order-2',
@@ -44,7 +44,7 @@ const orders: IOrder[] = [
    products: ['product-3', 'product-4'],
    email: 'jane.doe@example.com',
    phone: '987-654-3210',
-   status: OrderStatus.TRANSPORTING,
+   status: OrderStatus.CANCELED,
   },
   {
    id: 'order-3',
@@ -68,7 +68,7 @@ export default function Home() {
         <Flex
           w="full" 
           h="10%"
-          bg="gray.100"
+          bg="#F9FAFB"
           padding={4}
           gap={3}
           alignItems="center"
@@ -78,11 +78,11 @@ export default function Home() {
             {
               Object.values(OrderStatus).map((status) => {
                 if (status ===  OrderStatus.PENDING) return
-                const color = colorScheme[status];
+                const color = colorSchemePrincipal[status];
                 const variant = status === "ALL STATUS" ? 'solid' : 'outline';
               
                 return (
-                  <Badge key={status} variant={variant} colorScheme={color}>
+                  <Badge key={status} variant={variant} color={color} borderColor={color}>
                     {status}
                   </Badge>
                 );
@@ -93,7 +93,8 @@ export default function Home() {
           <ButtonGroup spacing="0">
             <Button 
               variant="outline" 
-              borderColor="gray.300"
+              bg="#EDF2F7"
+              borderColor="#EDF2F7"
               borderRadius="md" 
               style={{
                 borderRadius: "12px 0 0 12px",
@@ -107,7 +108,8 @@ export default function Home() {
             </Button>
             <Button 
               variant="outline" 
-              borderColor="gray.300"
+              bg='#F9FAFB'
+              borderColor="#E2E8F0"
               borderRadius="md" 
               style={{
                 borderRadius: "0 12px 12px 0",

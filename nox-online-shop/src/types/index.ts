@@ -27,21 +27,30 @@ export enum OrderStatus {
 
 export const colorScheme = {
   "ALL STATUS": 'gray',
-  PENDING: 'gray',
-  TRANSPORTING: 'blue',
-  PACKAGING: 'orange',
-  DELIVERED: 'green',
-  CANCELED: 'red',
+  PENDING: '#1A202C',
+  TRANSPORTING: '#BEE3F8',
+  PACKAGING: '#FEEBCB',
+  DELIVERED: '#C6F6D5',
+  CANCELED: '#FED7D7',
 }
 
-export const colorText = {
-  "ALL STATUS": '#0d0d0d', // Gris más oscuro
-  PENDING: '#0d0d0d', // Gris más oscuro
-  TRANSPORTING: '#001a4d', // Azul más oscuro
-  PACKAGING: '#7f4d00', // Naranja más oscuro
-  DELIVERED: '#0b3d20', // Verde más oscuro
-  CANCELED: '#3d0000', // Rojo más oscuro
+export const colorSchemePrincipal = {
+  "ALL STATUS": 'white',
+  TRANSPORTING: '#2B6CB0' , 
+  PACKAGING: '#C05621',
+  DELIVERED: '#25855A',
+  CANCELED: '#C53030',
  };
+
+export const colorText = {
+  "ALL STATUS": '#0d0d0d',
+  PENDING: '#1A202C', 
+  TRANSPORTING: '#2A4365' , 
+  PACKAGING: '#744210',
+  DELIVERED: '#22543D',
+  CANCELED: '#822727',
+ };
+
 
 export interface IOrder {
   id: string;

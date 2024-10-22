@@ -1,5 +1,5 @@
 import { colorScheme, colorText, IOrder } from "@/types"
-import { Avatar, Badge, Button, Flex, Table, TableContainer, Tbody, Td, Th, Tr } from "@chakra-ui/react";
+import { Avatar, Badge, Button, Flex, Select, Table, TableContainer, Tbody, Td, Th, Tr } from "@chakra-ui/react";
 import { Pagination } from "..";
 
 interface Props {
@@ -15,7 +15,23 @@ export const OrdersTable = ({orders}: Props) => {
             p={6}
             gap={4}
         >
-        <TableContainer>
+
+        <Flex
+            h="20%"
+            flexDirection="column"
+            gap={4}
+        >
+            <Select placeholder='Select option'>
+            {Array.from({ length: 10 }, (_, i) => i + 1).map((number) => (
+                <option key={number} value={number}>
+                    {number}
+                </option>
+            ))}
+            </Select>
+            
+        </Flex >
+
+        <TableContainer h="80%">
         <Table variant="simple" >
           <thead>
             <tr>
@@ -29,9 +45,11 @@ export const OrdersTable = ({orders}: Props) => {
           </thead>
           <Tbody>
             {orders.map((order, index) => (
-              <Tr key={order.id} bg={index % 2 !== 0 ? "white" : "gray.200"}>
-                <Td>{order.id}</Td>
-                <Td>
+              <Tr key={order.id} bg={index % 2 !== 0 ? "#FFFFFF" : "#EDF2F7"}>
+                <Td color="#718096">
+                    {order.id}
+                </Td>
+                <Td color="#718096">
                     <Flex align="center"> 
                         <Avatar name={order.name} src={order.src} size="sm" />
                         <span style={{ marginLeft: "8px" }}> 
@@ -39,12 +57,12 @@ export const OrdersTable = ({orders}: Props) => {
                         </span>
                     </Flex>
                 </Td>
-                <Td>
+                <Td color="#718096">
                     {order.products.map((product, index) => (
                     <div key={product} style={index !== 0 ? { marginTop: "8px" } : {}}>{product}</div>
                     ))}
                 </Td>
-                <Td>
+                <Td color="#718096">
                     <div> 
                         {order.email}
                     </div>
@@ -52,18 +70,18 @@ export const OrdersTable = ({orders}: Props) => {
                         {order.phone}
                     </div>
                 </Td>
-                <Td>
+                <Td color="#718096">
                     <Badge
                         key={order.status}
                         variant="solid"
-                        colorScheme={colorScheme[order.status]}
+                        bg={colorScheme[order.status]}
                         color={colorText[order.status]}
                         >
                         {order.status}
                     </Badge>
                 </Td>
                 <Td>
-                    <Button variant="solid" borderRadius="20px" bg="orange"  color="white" h={7}>
+                    <Button variant="solid" borderRadius="20px" bg="#FF7500"  color="white" h={7}>
                         Assing
                     </Button>
                 </Td>
@@ -75,7 +93,7 @@ export const OrdersTable = ({orders}: Props) => {
 
         <Pagination
             currentPage={1}
-            totalPages={2}
+            totalPages={3}
             onPageChange={() => {}}
         />
         </Flex>

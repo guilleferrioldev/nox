@@ -8,10 +8,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { Item } from "@/types";
+import { IItem } from "@/types";
 
 interface Props {
-    item: Item;
+    item: IItem;
     isActive: boolean;
 }
 
@@ -30,7 +30,8 @@ export const NavItem = ({ item, isActive }: Props) => {
           alignItems="center"
           _hover={{ textDecoration: "none", color: "black" }}
           fontWeight="medium"
-          color={isActive ? "black" : "gray.400"}
+          bg={isActive ? "#FFF9EC" : "#FFFFFF"}
+          color={isActive ? "#FF7500" : "#A0AEC0"}
           w="full"
         >
           <ListIcon as={icon} fontSize={22} m="0" />
@@ -63,7 +64,7 @@ export const NavItem = ({ item, isActive }: Props) => {
   }
   return (
     <Heading
-      color="gray.400"
+      color="#A0AEC0"
       fontWeight="medium"
       textTransform="uppercase"
       fontSize="sm"

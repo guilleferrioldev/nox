@@ -40,7 +40,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             <Header/>
           </GridItem>
           <GridItem colSpan={1}>
-            <Box w="full" h="full" bg="gray.100" borderTopLeftRadius="3xl">
+            <Box w="full" h="full" bg="#F9FAFB" borderTopLeftRadius="3xl">
               {children}
             </Box>
           </GridItem>

@@ -1,6 +1,5 @@
-import { Box, Flex, Icon } from "@chakra-ui/react";
-import { AiFillThunderbolt } from "react-icons/ai";
-
+import { Box, Flex } from "@chakra-ui/react";
+import Image from 'next/image';
 
 export const Logo = () => (
   <Flex
@@ -10,7 +9,7 @@ export const Logo = () => (
     gap={4}
   >
     <Box display="flex" alignItems="center" gap={2}>
-      <Icon as={AiFillThunderbolt} fontSize={30} />
+      <Image src="/logo.png" alt="Logo" width={300} height={300} />
     </Box>
   </Flex>
 );
