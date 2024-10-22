@@ -33,7 +33,7 @@ export const Assignments = ({assigments}: Props) => {
                 <Tbody>
                     {assigments.map((assignment, index) => (
                         <Tr key={assignment.id}
-                            bg={index % 2 !== 0 ? "white" : "gray.100"}>
+                            bg={index % 2 !== 0 ? "white" : "gray.200"}>
                             <Td>
                                 <Flex align="center"> 
                                     <Avatar name={assignment.name} src={assignment.src} size='sm'/>
@@ -59,7 +59,7 @@ export const Assignments = ({assigments}: Props) => {
                 </Tbody>
             </Table>
 
-            <Button variant="solid" borderRadius="15px" bg="orange">
+            <Button variant="solid" borderRadius="15px" bg="orange"  color="white" >
                  Assign All
             </Button>
             </Flex>

@@ -1,4 +1,6 @@
 import { Assignments } from "./dashboard/Assigments";
+import { OrdersTable } from "./dashboard/OrdersTable";
+import { Pagination } from "./dashboard/Pagination";
 import { Header } from "./Header";
 import { Layout } from "./Layout";
 import { Logo } from "./Logo";
@@ -11,5 +13,7 @@ export {
     Logo,
     Navigation,
     NavItem,
-    Assignments
+    Assignments,
+    OrdersTable,
+    Pagination
 }
