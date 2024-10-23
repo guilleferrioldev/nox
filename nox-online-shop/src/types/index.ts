@@ -17,7 +17,7 @@ export interface IAssignment {
   quantity: number;
 }
 
-export enum OrderStatus {
+export enum Status {
     ALL_STATUS = "ALL STATUS",
     PENDING = "PENDING",
     TRANSPORTING = "TRANSPORTING",
@@ -28,6 +28,7 @@ export enum OrderStatus {
 
 export const colorScheme = {
   "ALL STATUS": 'gray',
+  PENDING: '', 
   TRANSPORTING: '#BEE3F8',
   PACKAGING: '#FEEBCB',
   DELIVERED: '#C6F6D5',
@@ -59,7 +60,7 @@ export interface IOrder {
   products: string[];
   email?: string;
   phone?: string;
-  status: OrderStatus;
+  status: Status;
 }
 
 export interface MarkerLocation {

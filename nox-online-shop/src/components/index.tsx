@@ -8,6 +8,8 @@ import { Navigation } from "./Navigation";
 import { NavItem } from "./NavItem";
 import { Orders } from "./orders/Orders";
 import { Details } from "./details/Details";
+import { FormDetails } from "./details/FromDetails";
+import { FlexWrapper } from "./details/Wrapper";
 
 export {
     Header,
@@ -19,5 +21,7 @@ export {
     OrdersTable,
     Pagination,
     Orders,
-    Details
+    Details,
+    FormDetails,
+    FlexWrapper
 }

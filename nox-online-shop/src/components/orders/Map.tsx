@@ -131,9 +131,9 @@ const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
           </ModalHeader>
           <ModalBody>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            <FormControl mt={4}>
+            <FormControl mt={4} isRequired>
             <FormLabel htmlFor="messengerSelect">
-              Messenger <span style={{ color: "#FF7500" }}>*</span>
+              Messenger 
             </FormLabel>
             <Select
               id="messengerSelect"

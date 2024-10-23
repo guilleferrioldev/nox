@@ -1,7 +1,7 @@
 "use client"
 
 import { Assignments, OrdersTable } from "@/components";
-import {  colorSchemePrincipal, IAssignment, IOrder, OrderStatus } from "@/types";
+import {  colorSchemePrincipal, IAssignment, IOrder, Status } from "@/types";
 import { Badge, Box, Button, ButtonGroup, Flex, Grid, GridItem, Heading, Icon, Input, Stack } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
@@ -37,7 +37,7 @@ const orders: IOrder[] = [
    products: ['product-1', 'product-2'],
    email: 'john.doe@example.com',
    phone: '123-456-7890',
-   status: OrderStatus.PENDING,
+   status: Status.PENDING,
   },
   {
    id: 'order-2',
@@ -46,7 +46,7 @@ const orders: IOrder[] = [
    products: ['product-3', 'product-4'],
    email: 'jane.doe@example.com',
    phone: '987-654-3210',
-   status: OrderStatus.TRANSPORTING,
+   status: Status.TRANSPORTING,
   },
   {
    id: 'order-3',
@@ -55,7 +55,7 @@ const orders: IOrder[] = [
    products: ['product-5', 'product-6'],
    email: 'peter.pan@example.com',
    phone: '555-123-4567',
-   status: OrderStatus.PACKAGING,
+   status: Status.PACKAGING,
   },
   {
     id: 'order-4',
@@ -64,7 +64,7 @@ const orders: IOrder[] = [
     products: ['product-3', 'product-4'],
     email: 'jane.doe@example.com',
     phone: '987-654-3210',
-    status: OrderStatus.DELIVERED,
+    status: Status.DELIVERED,
    },
    {
     id: 'order-5',
@@ -73,7 +73,7 @@ const orders: IOrder[] = [
     products: ['product-3', 'product-4'],
     email: 'jane.doe@example.com',
     phone: '987-654-3210',
-    status: OrderStatus.CANCELED,
+    status: Status.CANCELED,
    },
  ];
 
@@ -104,8 +104,8 @@ export const Orders = () => {
         >
           <Stack direction='row'>
             {
-              Object.values(OrderStatus).map((status) => {
-                if (status ===  OrderStatus.PENDING) return
+              Object.values(Status).map((status) => {
+                if (status ===  Status.PENDING) return
                 const color = colorSchemePrincipal[status];
                 const variant = status === "ALL STATUS" ? 'solid' : 'outline';
               
