@@ -22,7 +22,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
           Previous
         </Button>
 
-        <ButtonGroup>
+        <ButtonGroup display={{ base: 'none', md: 'flex' }}>
           {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
             <Button
               key={page}

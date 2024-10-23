@@ -67,15 +67,14 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <GridItem>
         <Grid
           w="full"
-          h="100vh"  
+          h={{ base: "fit-content", md: "100vh" }}
           templateRows="1fr 12fr"
         >
-          <GridItem colSpan={1}>
+          <GridItem rowSpan={1}>
             <Header />
           </GridItem>
           <GridItem
-            colSpan={1}
-            overflowY={{ base: "auto", md: "hidden" }}
+            rowSpan={1}
           >
             <Box
               w="full"

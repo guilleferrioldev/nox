@@ -14,7 +14,7 @@ interface CustomTableProps {
 
 const CustomTable: React.FC<CustomTableProps> = ({ data, columns }) => {
   return (
-    <Box overflowX="auto" w="full" p={6} pt={0}>
+      <Box overflowX="scroll" w="full" p={6} h="full" pt={0}>
       <Table variant="striped">
         <Thead>
           <Tr>

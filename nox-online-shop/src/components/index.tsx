@@ -10,6 +10,7 @@ import { Orders } from "./orders/Orders";
 import { Details } from "./details/Details";
 import { FormDetails } from "./details/FromDetails";
 import { FlexWrapper } from "./details/Wrapper";
+import { ModalCentered } from "./orders/Modal";
 
 export {
     Header,
@@ -23,5 +24,6 @@ export {
     Orders,
     Details,
     FormDetails,
-    FlexWrapper
+    FlexWrapper,
+    ModalCentered
 }

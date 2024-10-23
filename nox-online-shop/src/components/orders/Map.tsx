@@ -1,11 +1,9 @@
 "use client"
 
 import { LatLngExpression, LatLngTuple } from 'leaflet';
-
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-
 import dynamic from "next/dynamic";
 import { useRef } from 'react';
 import { Button, Flex, Heading, Stack } from '@chakra-ui/react';
@@ -34,14 +32,13 @@ interface MapProps {
   zoom?: number;
   markerLocations: MarkerLocation[];
   marketsWithButtons?: boolean;
-  height?: string;
 }
 
 const defaults = {
   zoom: 16,
 };
 
-const Map = ({ posix, onOpen, markerLocations, zoom = defaults.zoom, marketsWithButtons = true, height = "100%"}: MapProps) => {
+const Map = ({ posix, onOpen, markerLocations, zoom = defaults.zoom, marketsWithButtons = true}: MapProps) => {
   const { toggleDetails } = useDetails();
   const { setLocation } = useLocation();
   const mapRef = useRef<L.Map | null>(null);
@@ -63,7 +60,7 @@ const Map = ({ posix, onOpen, markerLocations, zoom = defaults.zoom, marketsWith
             </Button>
             <Button variant="solid" borderRadius="20px" bg="#FF7500"  color="white" h={7} fontSize="sm" w="50%"
                 onClick={onOpen}>
-                Assing
+                Assign
             </Button>
           </Flex>}
         </Stack>
@@ -74,28 +71,31 @@ const Map = ({ posix, onOpen, markerLocations, zoom = defaults.zoom, marketsWith
   return (
     <Flex
       w="full"
-      h="90%"
+      h="full"
       flexDirection="column" 
-      p={6}
       gap={4}
-        >
-      <MapContainer
-        center={posix}
-        zoom={zoom}
-        scrollWheelZoom={false}
-        style={{width: "100%", height: height}}
-        ref={mapRef}
+    >
+      <Flex 
+        w="full" 
+        h="full"
+        position="relative"
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
-        />
-        {mapMarkers}
-      </MapContainer>
+        <MapContainer
+          center={posix}
+          zoom={zoom}
+          scrollWheelZoom={false}
+          style={{ width: "100%", height: "100%", padding: 3}} 
+          ref={mapRef}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
+          />
+          {mapMarkers}
+        </MapContainer>
+      </Flex>
     </Flex>
   );
 };
 
-
 export default Map;
-

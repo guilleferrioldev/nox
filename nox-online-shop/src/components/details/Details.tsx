@@ -1,7 +1,7 @@
 "use client"
 
 import { useLocation } from "@/context";
-import { Grid, GridItem, Stack, Textarea } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Stack, Textarea } from "@chakra-ui/react";
 import CustomTable from "../ui/CustomTable";
 import { MarkerLocation, Status } from "@/types";
 import { FlexWrapper, FormDetails } from "..";
@@ -52,7 +52,9 @@ export const Details = () => {
       <GridItem colSpan={{ base: 1, md: 2 }}>
         <FlexWrapper name="Shipping Address" subname="Order Shipping Address" buttonName="Assign">
           <Stack w="full" p={{ base: 4, md: 6 }} spacing={1} pt={0}>
-            <Mapear posix={location?.position as LatLngExpression} markerLocations={[location as MarkerLocation]} marketsWithButtons={false} height={"200px"} />
+            <Box h="200px" w="full">
+              <Mapear posix={location?.position as LatLngExpression} markerLocations={[location as MarkerLocation]} marketsWithButtons={false} />
+            </Box>
             <Textarea placeholder={location?.direction} isDisabled resize="none" color="black" />
           </Stack>
         </FlexWrapper>
