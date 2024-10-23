@@ -9,7 +9,8 @@ import "leaflet-defaulticon-compatibility";
 import dynamic from "next/dynamic";
 import { useRef } from 'react';
 import { Button, Flex, Heading, Stack } from '@chakra-ui/react';
-import { markerLocation } from '@/types';
+import { MarkerLocation } from '@/types';
+import { useDetails, useLocation } from '@/context';
 
 const MapContainer = dynamic(
   async () => await(import("react-leaflet")).then((mod) => mod.MapContainer),
@@ -36,7 +37,7 @@ const defaults = {
   zoom: 16,
 };
 
-const markerLocations: markerLocation[] = [
+const markerLocations: MarkerLocation[] = [
   {
    position: [23.115706, -82.418451], 
    direction: "Calle 30 e/27 y 29 Siboney Playa #3892",
@@ -65,6 +66,8 @@ const markerLocations: markerLocation[] = [
 ];  
 
 const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
+  const { toggleDetails } = useDetails();
+  const { setLocation } = useLocation();
   const mapRef = useRef<L.Map | null>(null);
 
   const mapMarkers = markerLocations.map((markerLocation, index) => (
@@ -78,7 +81,8 @@ const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
               {markerLocation.product}
           </Heading>
           <Flex w="full" alignItems="center" justifyContent="space-between" gap={2}>
-            <Button variant="outline" borderRadius="20px" borderColor="#FF7500"  color="#FF7500" h={7} fontSize="sm" w="50%">
+            <Button variant="outline" borderRadius="20px" borderColor="#FF7500"  color="#FF7500" h={7} fontSize="sm" w="50%" 
+                    onClick={() => {toggleDetails(); setLocation(markerLocation)}}>
                 View Details
             </Button>
             <Button variant="solid" borderRadius="20px" bg="#FF7500"  color="white" h={7} fontSize="sm" w="50%">

@@ -62,7 +62,7 @@ export interface IOrder {
   status: OrderStatus;
 }
 
-export interface markerLocation {
+export interface MarkerLocation {
   position: LatLngExpression | LatLngTuple;
   direction: string;
   product: string;

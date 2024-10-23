@@ -1,5 +1,6 @@
 "use client"
 
+import { useDetails } from "@/context";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Avatar, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Icon, Input, InputGroup, InputRightElement } from "@chakra-ui/react"
 import { IoIosSearch } from "react-icons/io"
@@ -7,6 +8,8 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { TfiWorld } from "react-icons/tfi";
 
 export const Header = () => {
+    const { isDetails } = useDetails();
+
     return (
       <Flex 
         w="full" 
@@ -20,11 +23,11 @@ export const Header = () => {
         >
           <Breadcrumb spacing='8px' separator={<ChevronRightIcon color='#2D3748' />}>
             <BreadcrumbItem>
-             <BreadcrumbLink href='#' color="#718096">Orders</BreadcrumbLink>
+             <BreadcrumbLink color="#718096">Orders</BreadcrumbLink>
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-              <BreadcrumbLink href='#' color='#2D3748'>Orders</BreadcrumbLink>
+              <BreadcrumbLink color='#2D3748'>{isDetails ? 'Details' : 'Orders'}</BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
         </Flex>
