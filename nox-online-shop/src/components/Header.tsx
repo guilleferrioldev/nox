@@ -88,6 +88,25 @@ export const Header = () => {
         direction={isMobile ? "column" : "row"} 
         gap={3}
       >
+         <InputGroup
+          size="md"
+          maxW="300px"
+          borderRadius="20px"
+          w={isMobile ? "full" : "auto"}
+        >
+          <InputRightElement>
+            <Icon as={IoIosSearch} size="sm" />
+          </InputRightElement>
+          <Input
+            placeholder="Find Cliente"
+            width="100%"
+            borderRadius="20px"
+            _focus={{
+              borderRadius: "20px",
+              boxShadow: "none",
+            }}
+          />
+        </InputGroup>
         {!isMobile && (
           <>
             <Box rounded="full" bg="#EDF2F7" p={2} w={8} h={8}>
@@ -119,26 +138,6 @@ export const Header = () => {
             />
           </>
         )}
-
-        <InputGroup
-          size="md"
-          maxW="300px"
-          borderRadius="20px"
-          w={isMobile ? "full" : "auto"}
-        >
-          <InputRightElement>
-            <Icon as={IoIosSearch} size="sm" />
-          </InputRightElement>
-          <Input
-            placeholder="Find Cliente"
-            width="100%"
-            borderRadius="20px"
-            _focus={{
-              borderRadius: "20px",
-              boxShadow: "none",
-            }}
-          />
-        </InputGroup>
       </Flex>
     </Flex>
   );
