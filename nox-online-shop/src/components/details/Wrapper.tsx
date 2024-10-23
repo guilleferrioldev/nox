@@ -23,7 +23,7 @@ export const FlexWrapper = ({name, subname, buttonName, children}: WrapperProps)
   
 const Header = ({name, subname, buttonName}: HeaderProps) => {
     return (
-      <Flex bg="#FFFFFF" h="15%" w="full" align="center" justify={buttonName ? "space-around": "start"} alignItems="center" p={6} mb={5} pb={0}>
+      <Flex bg="#FFFFFF" h="15%" w="full" align="center" justify={buttonName ? "space-around": "start"} alignItems="center" p={6} mb={2} pb={0}>
         <Stack spacing={2} w="full">
           <Heading as="h2" size="md" color="#05004E">
               {name}

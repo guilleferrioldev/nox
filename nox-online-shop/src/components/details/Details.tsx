@@ -1,8 +1,13 @@
+"use client"
+
 import { useLocation } from "@/context";
-import { Grid, GridItem} from "@chakra-ui/react";
+import { Grid, GridItem, Stack, Textarea} from "@chakra-ui/react";
 import CustomTable from "../ui/CustomTable";
-import { Status } from "@/types";
+import { MarkerLocation, Status } from "@/types";
 import { FlexWrapper, FormDetails } from "..";
+import { useMemo } from "react";
+import dynamic from "next/dynamic";
+import { LatLngExpression } from "leaflet";
 
 const dataProducts = [
   { product: 'OLLA REINA ROYAL 6L', price: 28},
@@ -28,9 +33,13 @@ const columnsStatus = [
 
 
 export const Details = () => {
+  const Mapear = useMemo(() => dynamic(
+    async () => (await import("@/components/orders/Map")).default,
+    { ssr: false }
+  ), [])
+
   const { location } = useLocation();
 
-  console.log(location);
   return (
     <Grid
       w="80%"
@@ -45,7 +54,10 @@ export const Details = () => {
       </GridItem>
       <GridItem colSpan={2}>
         <FlexWrapper name="Shipping Address" subname="Order Shipping Address" buttonName="Assign">
-          <></>
+           <Stack w="full" p={6} spacing={1} pt={0}>
+             <Mapear posix={location?.position as LatLngExpression} markerLocations={[location as MarkerLocation]} marketsWithButtons={false} height={"200px"}/>
+              <Textarea placeholder={location?.direction} isDisabled resize="none" color="black"/>
+           </Stack>
         </FlexWrapper>
       </GridItem>
 

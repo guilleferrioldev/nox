@@ -1,12 +1,13 @@
 "use client"
 
 import { Assignments, OrdersTable } from "@/components";
-import {  colorSchemePrincipal, IAssignment, IOrder, Status } from "@/types";
-import { Badge, Box, Button, ButtonGroup, Flex, Grid, GridItem, Heading, Icon, Input, Stack } from "@chakra-ui/react";
+import {  colorSchemePrincipal, IAssignment, IOrder, MarkerLocation, Status } from "@/types";
+import { Badge, Box, Button, ButtonGroup, Flex, Grid, GridItem, Heading, Icon, Input, Stack, useDisclosure } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import { BsGeo } from "react-icons/bs";
 import { MdMenu } from "react-icons/md";
+import { ModalCentered } from "./Modal";
 
 const assignments: IAssignment[] = [
   {
@@ -77,6 +78,34 @@ const orders: IOrder[] = [
    },
  ];
 
+ const markerLocations: MarkerLocation[] = [
+  {
+   position: [23.115706, -82.418451], 
+   direction: "Calle 30 e/27 y 29 Siboney Playa #3892",
+   product: "Café molido",
+  },
+  {
+   position: [23.111706, -82.422451], 
+   direction: "Calle 44 e/21 y 23 Siboney Playa #4212",
+   product: "Hamburguesas"
+  },
+  {
+   position: [23.113706, -82.416451], 
+   direction: "Calle 33 e/34 y 36 Siboney Playa #6040",
+   product: "Libros"
+  },
+  {
+   position: [23.113706, -82.424451], 
+   direction: "Calle 17 e/42 y 36 Siboney Playa #5053",
+   product: "Fruta fresca"
+  },
+  {
+   position: [23.114706, -82.420451], 
+   direction: "Calle 25 e/34 y 36 Siboney Playa #4578",
+   product: "Pan"
+  },
+];  
+
 
 export const Orders = () => {
     const Mapear = useMemo(() => dynamic(
@@ -85,6 +114,7 @@ export const Orders = () => {
       ), [])
     
       const [isMap, setIsMap] = useState(false);
+      const { isOpen, onOpen, onClose } = useDisclosure();
       
     return (
         <Box
@@ -176,7 +206,8 @@ export const Orders = () => {
               </Flex>
             </Flex>
             
-            {isMap ? <Mapear posix={[23.113706, -82.420451]} /> : <OrdersTable orders={orders}/>}
+            {isMap ? <Mapear posix={[23.113706, -82.420451]} onOpen={onOpen} markerLocations={markerLocations}/> : <OrdersTable orders={orders}/>}
+            <ModalCentered isOpen={isOpen} onClose={onClose}/>
           </GridItem>
 
           <GridItem colSpan={1} bg="white" borderRadius="20px">

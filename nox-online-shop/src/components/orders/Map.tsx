@@ -8,7 +8,7 @@ import "leaflet-defaulticon-compatibility";
 
 import dynamic from "next/dynamic";
 import { useRef } from 'react';
-import { Button, CloseButton, Flex, FormControl, FormLabel, Heading, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Stack, useDisclosure } from '@chakra-ui/react';
+import { Button, Flex, Heading, Stack } from '@chakra-ui/react';
 import { MarkerLocation } from '@/types';
 import { useDetails, useLocation } from '@/context';
 
@@ -30,46 +30,21 @@ const Popup = dynamic(async () => await(import("react-leaflet")).then((mod) => m
 
 interface MapProps {
   posix: LatLngExpression | LatLngTuple;
+  onOpen?: () => void,
   zoom?: number;
+  markerLocations: MarkerLocation[];
+  marketsWithButtons?: boolean;
+  height?: string;
 }
 
 const defaults = {
   zoom: 16,
 };
 
-const markerLocations: MarkerLocation[] = [
-  {
-   position: [23.115706, -82.418451], 
-   direction: "Calle 30 e/27 y 29 Siboney Playa #3892",
-   product: "Café molido" 
-  },
-  {
-   position: [23.111706, -82.422451], 
-   direction: "Calle 44 e/21 y 23 Siboney Playa #4212",
-   product: "Hamburguesas"
-  },
-  {
-   position: [23.113706, -82.416451], 
-   direction: "Calle 33 e/34 y 36 Siboney Playa #6040",
-   product: "Libros"
-  },
-  {
-   position: [23.113706, -82.424451], 
-   direction: "Calle 17 e/42 y 36 Siboney Playa #5053",
-   product: "Fruta fresca"
-  },
-  {
-   position: [23.114706, -82.420451], 
-   direction: "Calle 25 e/34 y 36 Siboney Playa #4578",
-   product: "Pan"
-  },
-];  
-
-const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
+const Map = ({ posix, onOpen, markerLocations, zoom = defaults.zoom, marketsWithButtons = true, height = "100%"}: MapProps) => {
   const { toggleDetails } = useDetails();
   const { setLocation } = useLocation();
   const mapRef = useRef<L.Map | null>(null);
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const mapMarkers = markerLocations.map((markerLocation, index) => (
     <Marker key={index} position={markerLocation.position} draggable={false}>
@@ -81,7 +56,7 @@ const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
           <Heading as="h3" size="small" color="#05004E" mb={3}>
               {markerLocation.product}
           </Heading>
-          <Flex w="full" alignItems="center" justifyContent="space-between" gap={2}>
+          {marketsWithButtons && <Flex w="full" alignItems="center" justifyContent="space-between" gap={2}>
             <Button variant="outline" borderRadius="20px" borderColor="#FF7500"  color="#FF7500" h={7} fontSize="sm" w="50%" 
                     onClick={() => {toggleDetails(); setLocation(markerLocation)}}>
                 View Details
@@ -90,7 +65,7 @@ const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
                 onClick={onOpen}>
                 Assing
             </Button>
-          </Flex>
+          </Flex>}
         </Stack>
       </Popup>
     </Marker>
@@ -108,7 +83,7 @@ const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
         center={posix}
         zoom={zoom}
         scrollWheelZoom={false}
-        className="h-full w-full"
+        style={{width: "100%", height: height}}
         ref={mapRef}
       >
         <TileLayer
@@ -117,44 +92,6 @@ const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
         />
         {mapMarkers}
       </MapContainer>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            <Flex w="full" alignItems="center" justifyContent="space-between" gap={2}>
-              <Heading as="h2" size="md" color="#05004E">
-                Assign To Messenger
-              </Heading>
-              <CloseButton onClick={onClose} />
-            </Flex>
-           
-          </ModalHeader>
-          <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            <FormControl mt={4} isRequired>
-            <FormLabel htmlFor="messengerSelect">
-              Messenger 
-            </FormLabel>
-            <Select
-              id="messengerSelect"
-              isRequired
-            >
-              <option value="messenger1">Messenger 1</option>
-              <option value="messenger2">Messenger 2</option>
-            </Select>
-          </FormControl>
-          </ModalBody>
-
-          <ModalFooter gap="10px">
-            <Button onClick={onClose} bg="#EDF2F7" color="#1A202C">
-              Cancel
-            </Button>
-            <Button bg="#FF7500" color="white" onClick={onClose}>
-              Assign To
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </Flex>
   );
 };
