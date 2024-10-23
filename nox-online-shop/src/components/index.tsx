@@ -15,5 +15,5 @@ export {
     NavItem,
     Assignments,
     OrdersTable,
-    Pagination
+    Pagination,
 }

@@ -3,6 +3,8 @@
 import { Assignments, OrdersTable } from "@/components";
 import {  colorSchemePrincipal, IAssignment, IOrder, OrderStatus } from "@/types";
 import { Badge, Box, Button, ButtonGroup, Flex, Grid, GridItem, Heading, Icon, Input, Stack } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
 import { BsGeo } from "react-icons/bs";
 import { MdMenu } from "react-icons/md";
 
@@ -76,6 +78,11 @@ const orders: IOrder[] = [
  ];
 
 export default function Home() {
+  const Map = useMemo(() => dynamic(
+    async () => (await import("@/components/dashboard/Map")).default,
+    { ssr: false }
+  ), [])
+  
   return (
     <Flex justifyContent="center" alignItems="center" h="full" w="full">
       <Box
@@ -164,7 +171,8 @@ export default function Home() {
               </Flex>
             </Flex>
             
-            <OrdersTable orders={orders}/>
+            <Map posix={[51.505, -0.09]} />
+            {false && <OrdersTable orders={orders}/>}
           </GridItem>
 
           <GridItem colSpan={1} bg="white" borderRadius="20px">
