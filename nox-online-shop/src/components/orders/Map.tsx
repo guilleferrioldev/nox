@@ -8,7 +8,7 @@ import "leaflet-defaulticon-compatibility";
 
 import dynamic from "next/dynamic";
 import { useRef } from 'react';
-import { Button, Flex, Heading, Stack } from '@chakra-ui/react';
+import { Button, CloseButton, Flex, FormControl, FormLabel, Heading, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Stack, useDisclosure } from '@chakra-ui/react';
 import { MarkerLocation } from '@/types';
 import { useDetails, useLocation } from '@/context';
 
@@ -69,6 +69,7 @@ const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
   const { toggleDetails } = useDetails();
   const { setLocation } = useLocation();
   const mapRef = useRef<L.Map | null>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const mapMarkers = markerLocations.map((markerLocation, index) => (
     <Marker key={index} position={markerLocation.position} draggable={false}>
@@ -85,7 +86,8 @@ const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
                     onClick={() => {toggleDetails(); setLocation(markerLocation)}}>
                 View Details
             </Button>
-            <Button variant="solid" borderRadius="20px" bg="#FF7500"  color="white" h={7} fontSize="sm" w="50%">
+            <Button variant="solid" borderRadius="20px" bg="#FF7500"  color="white" h={7} fontSize="sm" w="50%"
+                onClick={onOpen}>
                 Assing
             </Button>
           </Flex>
@@ -115,6 +117,44 @@ const Map = ({ posix, zoom = defaults.zoom }: MapProps) => {
         />
         {mapMarkers}
       </MapContainer>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <Flex w="full" alignItems="center" justifyContent="space-between" gap={2}>
+              <Heading as="h2" size="md" color="#05004E">
+                Assign To Messenger
+              </Heading>
+              <CloseButton onClick={onClose} />
+            </Flex>
+           
+          </ModalHeader>
+          <ModalBody>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            <FormControl mt={4}>
+            <FormLabel htmlFor="messengerSelect">
+              Messenger <span style={{ color: "#FF7500" }}>*</span>
+            </FormLabel>
+            <Select
+              id="messengerSelect"
+              isRequired
+            >
+              <option value="messenger1">Messenger 1</option>
+              <option value="messenger2">Messenger 2</option>
+            </Select>
+          </FormControl>
+          </ModalBody>
+
+          <ModalFooter gap="10px">
+            <Button onClick={onClose} bg="#EDF2F7" color="#1A202C">
+              Cancel
+            </Button>
+            <Button bg="#FF7500" color="white" onClick={onClose}>
+              Assign To
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Flex>
   );
 };
