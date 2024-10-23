@@ -24,13 +24,13 @@ const items: IItem[] = [
     label: "Orders",
     icon: FiFileText,
     path: "/",
-    messages: 2
   },
   {
     type: "link",
     label: "Banners",
     icon: AiOutlinePicture,
     path: "/",
+    messages: 6
   },
   {
     type: "link",
@@ -53,9 +53,10 @@ const items: IItem[] = [
   },
   {
     type: "link",
-    label: "Inventaries",
+    label: "Inventories",
     icon: AiOutlineDatabase,
     path: "/",
+    messages: 2
   },
   {
     type: "link",
@@ -72,10 +73,10 @@ const items: IItem[] = [
 ];
 
 export const Navigation = () => (
-  <List w="full" my={8}>
+  <List w="full">
     {items.map((item, index) => (
       <ListItem key={index}>
-        <NavItem item={item} isActive={index === 0} />
+        <NavItem item={item} isActive={index === 1} />
       </ListItem>
     ))}
   </List>

@@ -8,7 +8,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { TfiWorld } from "react-icons/tfi";
 
 export const Header = () => {
-    const { isDetails } = useDetails();
+    const { isDetails, toggleDetails} = useDetails();
 
     return (
       <Flex 
@@ -27,8 +27,13 @@ export const Header = () => {
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-              <BreadcrumbLink color='#2D3748'>{isDetails ? 'Details' : 'Orders'}</BreadcrumbLink>
+              <BreadcrumbLink color='#2D3748' onClick={isDetails ? toggleDetails: () => {}}>Orders</BreadcrumbLink>
           </BreadcrumbItem>
+          {isDetails &&
+            <BreadcrumbItem>
+              <BreadcrumbLink color='#2D3748'>Details</BreadcrumbLink>
+          </BreadcrumbItem>
+          }
         </Breadcrumb>
         </Flex>
         

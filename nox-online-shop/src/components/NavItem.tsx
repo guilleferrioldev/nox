@@ -33,6 +33,9 @@ export const NavItem = ({ item, isActive }: Props) => {
           bg={isActive ? "#FFF9EC" : "#FFFFFF"}
           color={isActive ? "#FF7500" : "#A0AEC0"}
           w="full"
+          h={10}
+          p={2}
+          borderRadius="5px"
         >
           <ListIcon as={icon} fontSize={22} m="0" />
         <Text>{label}</Text>

@@ -153,14 +153,15 @@ export const Orders = () => {
             </Button>
           </ButtonGroup>
         </Flex>
+        
         <Grid
-          w="full"
-          h="80%"
-          templateColumns={{ base: '1fr', md: '3fr 1fr' }} 
-          gap={10}
+           w="100%"
+           h="80%"         
+           templateColumns={{ base: '1fr', md: '3fr 1fr' }} 
+           gap={10}
         >
-          <GridItem colSpan={1} bg="white" borderRadius="20px">
-            <Flex w="full" h="10%" p={6} pt={10} alignItems="center" justifyContent="space-between">
+          <GridItem colSpan={1} bg="white" borderRadius="20px" overflow="hidden">
+            <Flex w="full" h="5%" p={6} pt={10} alignItems="center" justifyContent="space-between">
               <Stack spacing={2} w="40%">
                 <Heading as="h2" size="md" color="#05004E">
                     Orders

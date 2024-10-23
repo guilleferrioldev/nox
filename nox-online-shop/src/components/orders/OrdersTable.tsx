@@ -10,16 +10,12 @@ export const OrdersTable = ({orders}: Props) => {
     return (
         <Flex
             w="full"
-            h="90%"
+            h="full"
             flexDirection="column" 
             p={6}
-            gap={4}
-            mb={2}
         >
         <Flex
             w="full"
-            h="10px"
-            mb={3}
             flexDirection="column"
             gap={4}
         >
@@ -32,13 +28,13 @@ export const OrdersTable = ({orders}: Props) => {
                             </option>
                         ))}
                     </Select>
-                    <Heading w="60%" as="h2" size="sm" color="#737791" fontWeight="medium">
+                    <Heading w="60%" as="h2" size="sm" color="#737791" fontWeight="medium" fontSize="sm">
                         Entries per page
                     </Heading>
                 </Flex>
 
                 <Flex w="40%" h="full" alignItems="center" gap="20px">
-                    <Heading as="h2" size="sm" color="#737791" fontWeight="medium">
+                    <Heading as="h2" size="sm" color="#737791" fontWeight="medium" fontSize="sm">
                         Search
                     </Heading>
                     <Input/>
@@ -46,7 +42,7 @@ export const OrdersTable = ({orders}: Props) => {
             </Flex>
         </Flex >
 
-        <TableContainer h="80%" mt={2} mb={1}>
+        <TableContainer>
         <Table variant="simple" >
           <thead>
             <tr>
