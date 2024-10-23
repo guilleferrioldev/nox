@@ -190,7 +190,7 @@ export const Orders = () => {
            templateColumns={{ base: '1fr', md: '3fr 1fr' }} 
            gap={10}
         >
-          <GridItem colSpan={1} bg="white" borderRadius="20px" overflow="hidden">
+          <GridItem colSpan={1} bg="white" borderRadius="20px">
             <Flex w="full" h="5%" p={6} pt={10} alignItems="center" justifyContent="space-between">
               <Stack spacing={2} w="40%">
                 <Heading as="h2" size="md" color="#05004E">

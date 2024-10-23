@@ -1,46 +1,88 @@
-"use client"
+"use client";
 
-import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, IconButton } from "@chakra-ui/react";
 import { Logo, Navigation, Header } from "@/components";
+import { useState } from "react";
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <Grid
-      w="full"
-      h="full"
-      templateColumns="250px 1fr"
+      w="100vw"
+      h="100vh"
+      templateColumns={{ base: "1fr", md: "250px 1fr" }} 
       gap={4}
       bg="white"
+      overflowX="hidden"
     >
-      <GridItem>
+      <IconButton
+        aria-label="Open Menu"
+        icon={<HamburgerIcon />}
+        display={{ base: "block", md: "none" }}
+        position="absolute"
+        top={4}
+        left={4}
+        zIndex={10}
+        onClick={toggleSidebar}
+      />
+      <GridItem
+        display={{ base: isSidebarOpen ? "block" : "none", md: "block" }}
+        position={{ base: "fixed", md: "relative" }}
+        top={0}
+        left={0}
+        w={{ base: "full", md: "250px" }}
+        h="100vh"
+        bg="white"
+        zIndex={20}
+        overflowY="auto"
+      >
         <Flex
           as="aside"
           w="full"
           h="full"
-          bg="white"
           alignItems="start"
           padding={9}
           flexDirection="column"
-          justifyContent="space-between"
-          transition="ease-in-out .2s"
+          justifyContent="start"
         >
-          <Box w="full">
-            <Logo />
-            <Navigation />
-          </Box>
+          <IconButton
+            aria-label="Close Menu"
+            icon={<CloseIcon />}
+            display={{ base: "block", md: "none" }}
+            alignSelf="flex-end"
+            mb={4}
+            onClick={toggleSidebar}
+          />
+          <Logo />
+          <Navigation />
         </Flex>
       </GridItem>
+
       <GridItem>
         <Grid
           w="full"
-          h="full"
-          templateRows="7vh 93vh"
+          h="100vh"  
+          templateRows="1fr 12fr"
         >
           <GridItem colSpan={1}>
-            <Header/>
+            <Header />
           </GridItem>
-          <GridItem colSpan={1}>
-            <Box w="full" h="full" bg="#F9FAFB" borderTopLeftRadius="3xl">
+          <GridItem
+            colSpan={1}
+            overflowY={{ base: "auto", md: "hidden" }}
+          >
+            <Box
+              w="full"
+              h="full"
+              bg="#F9FAFB"
+              borderTopLeftRadius="3xl"
+            >
               {children}
             </Box>
           </GridItem>
@@ -49,4 +91,3 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     </Grid>
   );
 };
-

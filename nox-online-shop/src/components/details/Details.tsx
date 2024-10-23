@@ -39,9 +39,9 @@ export const Details = () => {
 
   return (
     <Grid
-      w="80%" // Use full width
+      w="80%"
       h="80%"
-      templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(6, 1fr)" }} // Responsive columns
+      templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(6, 1fr)" }}
       gap={6}
     >
       <GridItem colSpan={{ base: 1, md: 4 }}>
