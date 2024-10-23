@@ -11,7 +11,7 @@ interface PaginationProps {
 
 export const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
   return (
-    <Flex w="full" maxHeight="5%" justifyContent="space-between">
+    <Flex w="full" h="5%" justifyContent="space-between">
         <Button
           bg="#FFFFFF"
           color="#FF7500"

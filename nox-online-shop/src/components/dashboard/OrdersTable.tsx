@@ -14,10 +14,11 @@ export const OrdersTable = ({orders}: Props) => {
             flexDirection="column" 
             p={6}
             gap={4}
+            mb={2}
         >
         <Flex
             w="full"
-            maxHeight="20px"
+            h="10px"
             mb={3}
             flexDirection="column"
             gap={4}
@@ -45,7 +46,7 @@ export const OrdersTable = ({orders}: Props) => {
             </Flex>
         </Flex >
 
-        <TableContainer h="80%" mb={1}>
+        <TableContainer h="80%" mt={2} mb={1}>
         <Table variant="simple" >
           <thead>
             <tr>
@@ -60,10 +61,10 @@ export const OrdersTable = ({orders}: Props) => {
           <Tbody>
             {orders.map((order, index) => (
               <Tr key={order.id} bg={index % 2 !== 0 ? "#FFFFFF" : "#EDF2F7"}>
-                <Td color="#718096">
+                <Td color="#718096" fontSize="sm">
                     {order.id}
                 </Td>
-                <Td color="#718096">
+                <Td color="#718096" fontSize="sm">
                     <Flex align="center"> 
                         <Avatar name={order.name} src={order.src} size="sm" />
                         <span style={{ marginLeft: "8px" }}> 
@@ -71,12 +72,12 @@ export const OrdersTable = ({orders}: Props) => {
                         </span>
                     </Flex>
                 </Td>
-                <Td color="#718096">
+                <Td color="#718096" fontSize="sm">
                     {order.products.map((product, index) => (
                     <div key={product} style={index !== 0 ? { marginTop: "8px" } : {}}>{product}</div>
                     ))}
                 </Td>
-                <Td color="#718096">
+                <Td color="#718096" fontSize="sm">
                     <div> 
                         {order.email}
                     </div>
@@ -84,7 +85,7 @@ export const OrdersTable = ({orders}: Props) => {
                         {order.phone}
                     </div>
                 </Td>
-                <Td color="#718096">
+                <Td color="#718096" fontSize="sm">
                     <Badge
                         key={order.status}
                         variant="solid"
@@ -95,7 +96,7 @@ export const OrdersTable = ({orders}: Props) => {
                     </Badge>
                 </Td>
                 <Td>
-                    <Button variant="solid" borderRadius="20px" bg="#FF7500"  color="white" h={7}>
+                    <Button variant="solid" borderRadius="20px" bg="#FF7500"  color="white" h={7} fontSize="sm">
                         Assing
                     </Button>
                 </Td>

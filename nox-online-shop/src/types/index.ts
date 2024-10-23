@@ -1,3 +1,4 @@
+import { LatLngExpression, LatLngTuple } from "leaflet";
 import { IconType } from "react-icons";
 
 export interface IItem {
@@ -59,4 +60,10 @@ export interface IOrder {
   email?: string;
   phone?: string;
   status: OrderStatus;
+}
+
+export interface markerLocation {
+  position: LatLngExpression | LatLngTuple;
+  direction: string;
+  product: string;
 }

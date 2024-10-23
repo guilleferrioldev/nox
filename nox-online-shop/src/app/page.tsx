@@ -4,7 +4,7 @@ import { Assignments, OrdersTable } from "@/components";
 import {  colorSchemePrincipal, IAssignment, IOrder, OrderStatus } from "@/types";
 import { Badge, Box, Button, ButtonGroup, Flex, Grid, GridItem, Heading, Icon, Input, Stack } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { BsGeo } from "react-icons/bs";
 import { MdMenu } from "react-icons/md";
 
@@ -66,22 +66,16 @@ const orders: IOrder[] = [
     phone: '987-654-3210',
     status: OrderStatus.DELIVERED,
    },
-   {
-    id: 'order-5',
-    name: 'Jane Doe',
-    src: 'https://bit.ly/kent-c-dodds',
-    products: ['product-3', 'product-4'],
-    email: 'jane.doe@example.com',
-    phone: '987-654-3210',
-    status: OrderStatus.CANCELED,
-   },
  ];
 
+ 
 export default function Home() {
   const Map = useMemo(() => dynamic(
     async () => (await import("@/components/dashboard/Map")).default,
     { ssr: false }
   ), [])
+
+  const [isMap, setIsMap] = useState(false);
   
   return (
     <Flex justifyContent="center" alignItems="center" h="full" w="full">
@@ -118,9 +112,10 @@ export default function Home() {
 
           <ButtonGroup spacing="0">
             <Button 
+              onClick={() => setIsMap(false)}
               variant="outline" 
-              bg="#EDF2F7"
               borderColor="#EDF2F7"
+              bg={isMap ? '#F9FAFB' : '#EDF2F7'}
               borderRadius="md" 
               style={{
                 borderRadius: "12px 0 0 12px",
@@ -133,8 +128,9 @@ export default function Home() {
                 justifyContent="center"/>
             </Button>
             <Button 
+              onClick={() => setIsMap(true)}
               variant="outline" 
-              bg='#F9FAFB'
+              bg={isMap ? '#EDF2F7': '#F9FAFB'}
               borderColor="#E2E8F0"
               borderRadius="md" 
               style={{
@@ -151,7 +147,7 @@ export default function Home() {
         </Flex>
         <Grid
           w="full"
-          maxHeight="80%"
+          h="80%"
           templateColumns={{ base: '1fr', md: '3fr 1fr' }} 
           gap={10}
         >
@@ -171,8 +167,7 @@ export default function Home() {
               </Flex>
             </Flex>
             
-            <Map posix={[51.505, -0.09]} />
-            {false && <OrdersTable orders={orders}/>}
+            {isMap ? <Map posix={[23.113706, -82.420451]} /> : <OrdersTable orders={orders}/>}
           </GridItem>
 
           <GridItem colSpan={1} bg="white" borderRadius="20px">
